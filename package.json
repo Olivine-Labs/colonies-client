@@ -6,7 +6,8 @@
 
   "scripts": {
     "start": "node src/server.js",
-    "watch": "grunt watch"
+    "test": "node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- ./test --recursive",
+    "watch": "grunt watch-build"
   },
 
   "repository": {
@@ -15,7 +16,6 @@
   },
 
   "dependencies": {
-    "socket.io": "0.9.14",
     "connect": "2.7.11",
     "express": "3.2.6",
     "get-methodoverride": "0.1.2",
@@ -43,12 +43,13 @@
     "uglify-js": "2.3.6",
 
     "grunt": "0.4.1",
-    "grunt-contrib-watch": "0.4.4",
-    "grunt-usemin": "0.1.12",
+    "grunt-contrib-watch": "0.5.1",
     "grunt-contrib-uglify": "0.2.2",
     "grunt-contrib-less": "0.6.1",
     "grunt-contrib-jshint": "0.6.0",
-    "grunt-browserify2": "0.1.8"
+    "grunt-browserify": "1.2.1",
+    "grunt-nodemon": "~0.1.0",
+    "grunt-concurrent": "~0.3.0"
   },
 
   "engines": {
