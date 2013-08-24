@@ -1,0 +1,32 @@
+{{!< layout}}
+
+<div class="container">
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Game Id</th>
+        <th>Players</th>
+        <th>Created</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each games}}
+        <tr>
+          <td>{{_id}}</td>
+          <td>
+            {{length "meks" }}
+            <i class="glyphicon glyphicon-info-sign" title="{{#each meks}}{{this}}, {{/each}}"></i>
+          </td>
+          <td>
+            <time datetime="{{formatDate "createdAt" "YYYY-MM-DD HH:mm:ss Z"}}" title="{{formatDate "createdAt" "LLLL"}}">
+              {{fromNow "createdAt"}}
+            </time>
+          </td>
+          <td><a href="/games/{{_id}}" class="btn btn-primary btn-small">Join <i class="glyphicon glyphicon-arrow-right"></i></a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+

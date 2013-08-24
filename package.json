@@ -1,0 +1,61 @@
+{
+  "name": "colonies-client",
+  "description": "web client for colonies",
+  "version": "0.0.1",
+  "main": "app.js",
+
+  "scripts": {
+    "start": "node src/server.js",
+    "watch": "grunt watch"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Olivine-Labs/colonies-client.git"
+  },
+
+  "dependencies": {
+    "socket.io": "0.9.14",
+    "connect": "2.7.11",
+    "express": "3.2.6",
+    "get-methodoverride": "0.1.2",
+    "express-transmit": "0.0.1",
+
+    "underscore": "1.4.4",
+    "backbone": "1.0.0",
+
+    "handlebars": "1.0.12",
+    "express-hbs": "0.2.0",
+
+    "spdy": "1.8.9",
+    "moment": "2.0.0",
+    "mediator-js": "0.9.5"
+  },
+
+  "devDependencies": {
+    "mocha": "1.11.0",
+    "should": "1.2.2",
+
+    "browserify": "2.18.1",
+    "handlebars-runtime": "1.0.12",
+    "hbsfy": "0.1.5",
+
+    "uglify-js": "2.3.6",
+
+    "grunt": "0.4.1",
+    "grunt-contrib-watch": "0.4.4",
+    "grunt-usemin": "0.1.12",
+    "grunt-contrib-uglify": "0.2.2",
+    "grunt-contrib-less": "0.6.1",
+    "grunt-contrib-jshint": "0.6.0",
+    "grunt-browserify2": "0.1.8"
+  },
+
+  "engines": {
+    "node": ">= 0.10.5",
+    "npm":  ">= 1.1.49"
+  },
+
+  "private": true
+}
+
