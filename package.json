@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- ./test --recursive",
-    "watch": "grunt watch-build"
+    "watch": "./node_modules/.bin/grunt watch-build"
   },
 
   "repository": {
@@ -43,6 +43,7 @@
     "uglify-js": "2.3.6",
 
     "grunt": "0.4.1",
+    "grunt-cli": "0.1.9",
     "grunt-contrib-watch": "0.5.1",
     "grunt-contrib-uglify": "0.2.2",
     "grunt-contrib-less": "0.6.1",
