@@ -7,42 +7,30 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
-        sourceMap: './src/public/build/js/app.map.js'
-      },
-
-      build: {
-        src: './src/public/build/js/app.js',
-        dest: './src/public/build/js/app.min.js'
-      }
-    },
-
-    browserify2: {
-      main: {
-        entry: './src/assets/js/app.js',
-        compile: './src/public/build/js/app.js',
-
-        expose: {
-          backbone: 'backbone'
+    browserify: {
+      development: {
+        files: {
+          './src/public/build/js/app.js': './src/assets/js/app.js'
         },
 
-        beforeHook: function(bundle){
-          bundle.transform(hbsfy);
+        options: {
+          debug: true,
+          external: ['backbone'],
+          transform: ['hbsfy']
         }
       }
     },
 
-    jshint: {
-      // define the files to lint
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      options: {
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true,
-          require: true
+    uglify: {
+      production: {
+        options: {
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
+          sourceMap: './src/public/build/js/app.map.js'
+        },
+
+        build: {
+          src: './src/public/build/js/app.js',
+          dest: './src/public/build/js/app.min.js'
         }
       }
     },
@@ -90,17 +78,37 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    nodemon: {
+      development: {
+        options: {
+          file: 'src/server.js',
+          cwd: __dirname
+        }
+      }
+    },
+
+    concurrent: {
+      development: {
+        tasks: ['nodemon', 'watch'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+    }
   });
 
-  grunt.loadNpmTasks('grunt-browserify2');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-concurrent');
 
-  // Default task(s).
   grunt.registerTask('build-less', ['less']);
-  grunt.registerTask('build-js', ['browserify2', 'uglify']);
+  grunt.registerTask('build-js', ['browserify:development']);
 
   grunt.registerTask('default', ['build-js', 'build-less']);
+  grunt.registerTask('watch-build', ['concurrent:development']);
 };
 
