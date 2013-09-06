@@ -42,8 +42,12 @@
 
     {{> layouts/footer}}
 
-    <script src="{{cdn}}/js/lib/jquery-1.9.1.min.js" async></script>
-    <script src="{{cdn}}/js/app.js" async></script>
+    <script src="{{cdn}}/js/lib/jquery-1.9.1.min.js" defer></script>
+    <script src="{{cdn}}/js/app.js" defer></script>
+
+    {{#each scripts}}
+      <script src="{{cdn}}/js/{{.}}.js" defer></script>
+    {{/each}}
 
     {{#if googleAnalyticsId}}
       <script async>

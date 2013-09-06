@@ -34,7 +34,8 @@ module.exports = function(app){
 
       res.render('games/show', {
         subtitle: 'Game',
-        game: data
+        game: data,
+        scripts: ['game']
       });
     });
   });

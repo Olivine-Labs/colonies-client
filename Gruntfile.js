@@ -10,7 +10,8 @@ module.exports = function(grunt) {
     browserify: {
       development: {
         files: {
-          './src/public/build/js/app.js': './src/assets/js/app.js'
+          './src/public/build/js/app.js': './src/assets/js/app.js',
+          './src/public/build/js/game.js': './src/assets/js/game.js'
         },
 
         options: {
@@ -22,15 +23,15 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      production: {
-        options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
-          sourceMap: './src/public/build/js/app.map.js'
-        },
+      options: {
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
+        sourceMap: './src/public/build/js/app.map.js'
+      },
 
-        build: {
-          src: './src/public/build/js/app.js',
-          dest: './src/public/build/js/app.min.js'
+      production: {
+        files: {
+          './src/public/build/js/app.min.js': ['./src/public/build/js/app.js'],
+          './src/public/build/js/game.min.js': ['./src/public/build/js/game.js']
         }
       }
     },
@@ -106,7 +107,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
 
   grunt.registerTask('build-less', ['less']);
-  grunt.registerTask('build-js', ['browserify:development']);
+  grunt.registerTask('build-js', ['browserify:development', 'uglify:production']);
 
   grunt.registerTask('default', ['build-js', 'build-less']);
   grunt.registerTask('watch-build', ['concurrent:development']);
